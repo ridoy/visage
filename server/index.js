@@ -19,7 +19,7 @@ app.post('/upload', function(req, res) {
             return;
         }
         var name = uuid.v1();
-        f = fs.createWriteStream('./uploads/' + name + '.jpeg');
+        f = fs.createWriteStream('uploads/' + name + '.png');
 
         f.write(req.file.buffer, function(err, info) {
             if(err) { 
