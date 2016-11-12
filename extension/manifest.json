@@ -20,8 +20,8 @@
   },
   "content_scripts": [
   {
-    "matches": ["https://www.facebook.com/", "https://www.twitter.com/"],
-    "js": ["./js/main.js"],
+    "matches": ["https://www.facebook.com/", "https://twitter.com/login/"],
+    "js": ["./js/main.js", "./js/jquery/jquery.min.js"],
     "run_at": "document_end"
     }],
   "permissions": [

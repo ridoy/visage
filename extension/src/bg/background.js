@@ -7,8 +7,13 @@
 
 
 chrome.browserAction.onClicked.addListener(function(tab) {
-    var newURL = "https://www.facebook.com/";
-    var creating = chrome.tabs.create({ url: newURL }, function(tab) {
+    var facebook = "https://www.facebook.com/";
+    var twitter = "https://twitter.com/login/";
+
+    var openFacebook = chrome.tabs.create({ url: facebook }, function(tab) {
+    })
+
+    var openTwitter = chrome.tabs.create({ url: twitter }, function(tab) {
     })
 });
 
