@@ -1,0 +1,20 @@
+{
+  "name": "stranger-danger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "file": "^0.2.2",
+    "fs": "0.0.1-security",
+    "multer": "^1.2.0",
+    "node-uuid": "^1.4.7",
+    "python-shell": "^0.4.0"
+  }
+}
