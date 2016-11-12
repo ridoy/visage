@@ -20,7 +20,7 @@
   },
   "content_scripts": [
   {
-    "matches": ["https://www.facebook.com/"],
+    "matches": ["https://www.facebook.com/", "https://www.twitter.com/"],
     "js": ["./js/main.js"],
     "run_at": "document_end"
     }],
