@@ -9,7 +9,7 @@ function signInFacebook() {
 	logInFacebook.click();
 }
 
-function signInTwitter() {
+/*function signInTwitter() {
 	var username = document.getElementsByClassName('js-username-field')[0];
 	console.log(username);
 
@@ -20,6 +20,22 @@ function signInTwitter() {
 	password.value = "hackathon123";
 
 	document.getElementsByClassName('submit btn primary-btn')[0].click();
+}*/
+
+function signInGMail() {
+	var email = document.getElementById('Email');
+	email.value = 'hackathontest321';
+
+	var next = document.getElementById('next');
+	next.click();
+
+	setTimeout(function() {
+		var password = document.getElementById('Passwd');
+		password.value = 'hackathon123';
+
+		var signIn = document.getElementById('signIn');
+		signIn.click();
+	}, 2000);
 }
 
 if (window.location.host === "www.facebook.com") {
@@ -28,4 +44,8 @@ if (window.location.host === "www.facebook.com") {
 
 if (window.location.host === "twitter.com") {
 	signInTwitter();
+}
+
+if (window.location.host === "accounts.google.com") {
+	signInGMail();
 }

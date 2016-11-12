@@ -8,12 +8,16 @@
 
 chrome.browserAction.onClicked.addListener(function(tab) {
     var facebook = "https://www.facebook.com/";
-    var twitter = "https://twitter.com/login/";
+    //var twitter = "https://twitter.com/login/";
+    var gmail = "https://gmail.com/"
 
     var openFacebook = chrome.tabs.create({ url: facebook }, function(tab) {
     })
 
-    var openTwitter = chrome.tabs.create({ url: twitter }, function(tab) {
+    //var openTwitter = chrome.tabs.create({ url: twitter }, function(tab) {
+    //})
+
+    var openGmail = chrome.tabs.create({ url: gmail }, function(tab) {
     })
 });
 
