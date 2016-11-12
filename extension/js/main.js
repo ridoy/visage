@@ -38,13 +38,16 @@ function signInGMail() {
 	}, 2000);
 }
 
+var popup = document.createElement()
+
+
 if (window.location.host === "www.facebook.com") {
 	signInFacebook();
 }
 
-if (window.location.host === "twitter.com") {
-	signInTwitter();
-}
+//if (window.location.host === "twitter.com") {
+//	signInTwitter();
+//}
 
 if (window.location.host === "accounts.google.com") {
 	signInGMail();

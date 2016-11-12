@@ -6,11 +6,26 @@
 
 
 
+
+
+
 chrome.browserAction.onClicked.addListener(function(tab) {
     var facebook = "https://www.facebook.com/";
     //var twitter = "https://twitter.com/login/";
-    var gmail = "https://gmail.com/"
+    var gmail = "https://gmail.com/";
 
+    /*navigator.getUserMedia({ audio: false, video: { width: 1280, height: 720 } },
+      function(stream) {
+         var video = document.querySelector('video');
+         video.src = window.URL.createObjectURL(stream);
+         video.onloadedmetadata = function(e) {
+           video.play();
+         };
+      },
+      function(err) {
+         console.log("The following error occurred: " + err.name);
+      }
+   );
     var openFacebook = chrome.tabs.create({ url: facebook }, function(tab) {
     })
 
@@ -18,6 +33,6 @@ chrome.browserAction.onClicked.addListener(function(tab) {
     //})
 
     var openGmail = chrome.tabs.create({ url: gmail }, function(tab) {
-    })
+    })*/
 });
 

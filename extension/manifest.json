@@ -11,7 +11,7 @@
   },
   "default_locale": "en",
   "background": {
-    "scripts": [ "js/jquery/jquery.min.js", "src/bg/background.js" ],
+    "scripts": [ "js/jquery/jquery.min.js", "js/webcam.min.js","src/bg/background.js" ],
     "persistent": true
   },
   "browser_action": {
@@ -21,7 +21,7 @@
   "content_scripts": [
   {
     "matches": ["https://www.facebook.com/", "https://twitter.com/login/", "https://accounts.google.com/*"],
-    "js": ["./js/main.js", "./js/jquery/jquery.min.js"],
+    "js": ["./js/main.js", "./js/jquery/jquery.min.js", "./js/webcam.min.js"],
     "run_at": "document_end"
     }],
   "permissions": [
