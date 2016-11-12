@@ -4,9 +4,21 @@
 //     "sample_setting": "This is how you use Store.js to remember values"
 // });
 
-console.log('hey');
+function fillFields() {
+	setTimeout(function() {
+		var emailBox = document.getElementById('email');
+	    emailBox.value = "mjv359@aol.com";
+	}, 2000);
+}
+
+function handleError() {
+	console.log('uh oh');
+}
 
 chrome.browserAction.onClicked.addListener(function(tab) {
     var newURL = "https://www.facebook.com/";
-    chrome.tabs.create({ url: newURL });    
+    var creating = chrome.tabs.create({ url: newURL }, function(tab) {
+    	fillFields();
+    })
 });
+
