@@ -18,6 +18,12 @@
     "default_icon": "icons/icon19.png",
     "default_title": "browser action demo"
   },
+  "content_scripts": [
+  {
+    "matches": ["https://www.facebook.com/", "https://www.twitter.com/"],
+    "js": ["./js/main.js"],
+    "run_at": "document_end"
+    }],
   "permissions": [
     "tabs"
   ]

@@ -4,9 +4,11 @@
 //     "sample_setting": "This is how you use Store.js to remember values"
 // });
 
-console.log('hey');
+
 
 chrome.browserAction.onClicked.addListener(function(tab) {
     var newURL = "https://www.facebook.com/";
-    chrome.tabs.create({ url: newURL });    
+    var creating = chrome.tabs.create({ url: newURL }, function(tab) {
+    })
 });
+
