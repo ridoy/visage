@@ -6,9 +6,7 @@ var upload = multer().single('file');
 var app = express();
 var uuid = require('node-uuid');
 var dotenv = require('dotenv');
-if (process.env.accountSid && process.env.authToken) {
-    var client = require('twilio')(accountSid, authToken); 
-}
+var client = require('twilio')(process.env.ACCOUNT_SID, process.env.ACCOUNT_TOKEN); 
 
 app.set('port', (process.env.PORT || 8080))
 
@@ -36,21 +34,26 @@ app.post('/upload', function(req, res) {
             console.log(options);
             shell.run('script.py', options, function(err, analysis) {
                 console.log(err);
-                console.log(parseInt(analysis[0]));
-                res.send(parseInt(analysis[0]) === 34);
+                var isCorrect = parseInt(analysis[0]) === 34;
+                if (!isCorrect) {
+                    sendTwilioText();
+                }
+                res.send(isCorrect);
             });
         });      
     }); 
 });
 
 function sendTwilioText() {
-    cliient.messages.create({ 
+    var date = new Date();
+    date.setTime(Date.now());
+    var dateStr = date.toUTCString();
+    client.messages.create({ 
         to: "+14016449821", 
-        from: "+15017250604", 
-        body: "This is the ship that made the Kessel Run in fourteen parsecs?", 
-        mediaUrl: "https://c1.staticflickr.com/3/2899/14341091933_1e92e62d12_b.jpg",  
+        from: "+16318886152", 
+        body: "Hey Matt – someone just tried to log in to your browser on " +  dateStr, 
     }, function(err, message) { 
-            console.log(message.sid); 
+        console.log(message.sid); 
     });
 }
 
