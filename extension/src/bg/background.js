@@ -16,6 +16,9 @@ function sendDatMessage(tab) {
     chrome.tabs.sendMessage(tab.id, {}, function(serverResponse) {
         if (serverResponse === true) { // face recognized
             isVerified = true;
+            setTimeout(function() {
+                isVerified = false;
+            }, 30000):
 
             chrome.tabs.create({ url: facebook }, function(tab) {
             })
