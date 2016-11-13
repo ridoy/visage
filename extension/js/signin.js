@@ -5,8 +5,9 @@ function signInFacebook() {
     var passBoxFacebook = document.getElementById('pass');
     passBoxFacebook.value = "michaelgarvey";
 
-    var logInFacebook = document.getElementById('u_0_n');
-    logInFacebook.click();
+    var loginButtonParent = document.getElementById('loginbutton');
+    var loginButton       = loginButtonParent.childNodes[0];
+    loginButton.click();
 }
 
 function signInGMail() {
