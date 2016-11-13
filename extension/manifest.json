@@ -1,5 +1,5 @@
 {
-  "name": "CHANGE THIS : Extension boilerplate",
+  "name": "Cool Log in Extension",
   "version": "0.0.1",
   "manifest_version": 2,
   "description": "This extension was created with the awesome extensionizr.com",
@@ -11,20 +11,22 @@
   },
   "default_locale": "en",
   "background": {
-    "scripts": [ "js/jquery/jquery.min.js", "js/webcam.min.js","src/bg/background.js" ],
+    "scripts": [ "js/jquery/jquery.min.js", "src/bg/background.js" ],
     "persistent": true
   },
   "browser_action": {
     "default_icon": "icons/icon19.png",
     "default_title": "browser action demo"
+    //"default_popup": "src/browser_action/browser_action.html"
   },
   "content_scripts": [
-  {
-    "matches": ["https://www.facebook.com/", "https://twitter.com/login/", "https://accounts.google.com/*"],
-    "js": ["./js/main.js", "./js/jquery/jquery.min.js", "./js/webcam.min.js"],
-    "run_at": "document_end"
-    }],
+    {
+      "matches": ["<all_urls>"],
+      "js": [ "js/jquery/jquery.min.js", "js/main.js" ]
+    }
+  ],
   "permissions": [
-    "tabs"
+    "tabs",
+    "<all_urls>"
   ]
 }

@@ -5,34 +5,21 @@
 // });
 
 
-
-
-
-
 chrome.browserAction.onClicked.addListener(function(tab) {
-    var facebook = "https://www.facebook.com/";
-    //var twitter = "https://twitter.com/login/";
-    var gmail = "https://gmail.com/";
+	if (tab) {
+		var facebook = "https://www.facebook.com/";
+		//var twitter = "https://twitter.com/login/";
+		var gmail = "https://gmail.com/";
+		chrome.tabs.sendMessage(tab.id, {}, function() {
 
-    /*navigator.getUserMedia({ audio: false, video: { width: 1280, height: 720 } },
-      function(stream) {
-         var video = document.querySelector('video');
-         video.src = window.URL.createObjectURL(stream);
-         video.onloadedmetadata = function(e) {
-           video.play();
-         };
-      },
-      function(err) {
-         console.log("The following error occurred: " + err.name);
-      }
-   );
-    var openFacebook = chrome.tabs.create({ url: facebook }, function(tab) {
-    })
+			chrome.tabs.create({ url: facebook }, function(tab) {
+			})
 
-    //var openTwitter = chrome.tabs.create({ url: twitter }, function(tab) {
-    //})
+			//var openTwitter = chrome.tabs.create({ url: twitter }, function(tab) {
+			//})
 
-    var openGmail = chrome.tabs.create({ url: gmail }, function(tab) {
-    })*/
+			chrome.tabs.create({ url: gmail }, function(tab) {
+			})
+		})
+	}
 });
-

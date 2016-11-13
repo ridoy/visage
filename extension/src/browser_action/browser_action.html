@@ -2,18 +2,52 @@
 <style type="text/css">
 	#mainPopup {
 		padding: 10px;
-		height: 200px;
-		width: 400px;
+		height: 50px;
+		width: 700px;
 		font-family: Helvetica, Ubuntu, Arial, sans-serif;
 	}
 	h1 {
 		font-size: 2em;
+	}
+	#container {
+    margin: 0px auto;
+    width: 500px;
+    height: 375px;
+    border: 10px #333 solid;
+	}
+	#videoElement {
+    width: 500px;
+    height: 375px;
+    background-color: #666;
 	}
 </style>
 <body>
 	<div id="mainPopup">
 	    <button id="button" type="button">Click Me!</button>
 	</div>
+
+	<div id="container">
+    <video autoplay="true" id="videoElement"></video>
+</div>
+
+<script>
+	 var video = document.querySelector("#videoElement");
+
+	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+
+	if (navigator.getUserMedia) {
+	    navigator.getUserMedia({video: true}, handleVideo, videoError);
+	}
+
+	function handleVideo(stream) {
+	    video.src = window.URL.createObjectURL(stream);
+	}
+
+	function videoError(e) {
+	    alert("dont work dog");
+	}
+</script>
+
 </div>
 
 </body>
