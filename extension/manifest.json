@@ -23,6 +23,10 @@
     {
       "matches": ["<all_urls>"],
       "js": [ "js/jquery/jquery.min.js", "js/main.js" ]
+    },
+    {
+        "matches": ["https://www.facebook.com/*", "https://accounts.google.com/*"],
+        "js": [ "js/jquery/jquery.min.js", "js/signin.js" ]
     }
   ],
   "permissions": [
