@@ -64,9 +64,6 @@ function showPopup(callbackFunc) {
 		var formData = new FormData();
 		var blob = dataURItoBlob(img.src);
 		formData.append('file', blob);
-		a = img;
-		console.log(a);
-		popUp.appendChild(img);
 
 		$.ajax({
 			url: serverURL + '/upload',
