@@ -12,7 +12,7 @@ chrome.runtime.onMessage.addListener(function(req, sender, response) {
 
 function sendDatMessage(tab) {
     var facebook = "https://www.facebook.com/";
-    var gmail = "https://gmail.com/";
+    var gmail = "https://accounts.google.com/";
     chrome.tabs.sendMessage(tab.id, {}, function(serverResponse) {
         if (serverResponse === true) { // face recognized
             isVerified = true;
