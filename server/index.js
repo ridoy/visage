@@ -19,7 +19,7 @@ app.post('/upload', function(req, res) {
             return;
         }
         var name = uuid.v1();
-        f = fs.createWriteStream('uploads/' + name + '.png');
+        f = fs.createWriteStream('./uploads/' + name + '.png');
 
         f.write(req.file.buffer, function(err, info) {
             if(err) { 
@@ -27,11 +27,13 @@ app.post('/upload', function(req, res) {
                 return;
             }
             var options = {
-                args: [name]
+                args: ['./uploads/' + name + '.png']
             };  
+            console.log(options);
             shell.run('script.py', options, function(err, analysis) {
+                console.log(err);
                 console.log(parseInt(analysis[0]));
-                res.send(analysis[0] === 35);
+                res.send(parseInt(analysis[0]) === 34);
             });
         });      
     }); 

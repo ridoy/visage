@@ -8,15 +8,11 @@ import pprint
 import random
 import math
 
-from sklearn import cross_validation as cval
-from sklearn.base import BaseEstimator
-from sklearn.metrics import precision_score
-
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 def create_and_train_model_from_dict(label_matrix):
     """ Create eigenface model from dict of labels and images """
-    model = cv2.createFisherFaceRecognizer()
+    model = cv2.createEigenFaceRecognizer()
     model.train(label_matrix.values(), numpy.array(label_matrix.keys()))
 
     return model
@@ -65,17 +61,9 @@ def split_test_training_data(data, ratio=0.2):
 
 def read_matrix_from_file(filename):
     """ read in grayscale version of image from file """
-    return cv2.imread(filename, cv2.CV_LOAD_IMAGE_GRAYSCALE)
-
-class FaceRecognizerModel(BaseEstimator):
-    def __init__(self):
-        self.model = cv2.createLBPHFaceRecognizer()
-
-    def fit(self, X, y):
-        self.model.train(X, y)
-
-    def predict(self, T):
-        return [self.model.predict(T[i]) for i in range(0, T.shape[0])]
+    im = cv2.imread(filename, cv2.CV_LOAD_IMAGE_GRAYSCALE)
+    im_resized = cv2.resize(im, (100, 100))
+    return im_resized
 
 if __name__ == "__main__":
     training_data = prepare_training_testing_data(read_csv())
@@ -85,13 +73,12 @@ if __name__ == "__main__":
     filename = sys.argv[1]
     im = cv2.imread(filename, cv2.CV_LOAD_IMAGE_GRAYSCALE)
     faces = face_cascade.detectMultiScale(im, 1.3, 5)
-    print faces
     if len(faces) == 0:
         print 0
     else:
         (x,y,w,h) = faces[0] # assuming this is the biggest face
-        roi = im[y:y+h, x:x+w]# crop out face
-        roi_resized = cv2.resize(roi, (92, 112))
+        roi = im[y:y+h, x:x+w] # crop out face
+        roi_resized = cv2.resize(roi, (100, 100))
         predicted_label = predict_image_from_model(model, roi_resized)
         '''
         cv2.imshow('img', roi_resized)
