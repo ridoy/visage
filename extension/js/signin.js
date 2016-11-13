@@ -25,10 +25,15 @@ function signInGMail() {
     }, 2000);
 }
 
-if (window.location.host === "www.facebook.com") {
-        signInFacebook();
-}
+chrome.runtime.sendMessage({}, function(isVerified) {
+    console.log(isVerified);
+    if (isVerified) {
+        if (window.location.host === "www.facebook.com") {
+            signInFacebook();
+        }
 
-if (window.location.host === "accounts.google.com") {
-        signInGMail();
-}
+        if (window.location.host === "accounts.google.com") {
+            signInGMail();
+        }
+    }
+});
