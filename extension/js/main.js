@@ -66,12 +66,8 @@ function showPopup(isVerified, isFirstAttempt, callbackFunc) {
         navigator.getUserMedia({video: true}, handleVideo, videoError);
 
         var text = document.createElement('p');
-        var track;
         function handleVideo(stream) {
             console.log('dat boi boiii');
-            console.log(stream);
-            track = stream;
-            console.log(track);
             video.src = window.URL.createObjectURL(stream);
             if (!isFirstAttempt) {
                 header.innerText = 'Login failed! Please try again.';
@@ -140,10 +136,6 @@ function showPopup(isVerified, isFirstAttempt, callbackFunc) {
                 processData: false,
                 success: function(response) {
                     $(popUp).remove();
-                    if (response == true){
-                        track.active = false;
-                        console.log(track);
-                    }
                     callbackFunc(response, null);
                 }
             })

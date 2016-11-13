@@ -3,3 +3,4 @@ node_modules/
 att_faces/
 uploads/
 npm-debug.log
+.env

@@ -5,6 +5,10 @@ var multer = require('multer');
 var upload = multer().single('file');
 var app = express();
 var uuid = require('node-uuid');
+var dotenv = require('dotenv');
+if (process.env.accountSid && process.env.authToken) {
+    var client = require('twilio')(accountSid, authToken); 
+}
 
 app.set('port', (process.env.PORT || 8080))
 
@@ -38,6 +42,17 @@ app.post('/upload', function(req, res) {
         });      
     }); 
 });
+
+function sendTwilioText() {
+    cliient.messages.create({ 
+        to: "+14016449821", 
+        from: "+15017250604", 
+        body: "This is the ship that made the Kessel Run in fourteen parsecs?", 
+        mediaUrl: "https://c1.staticflickr.com/3/2899/14341091933_1e92e62d12_b.jpg",  
+    }, function(err, message) { 
+            console.log(message.sid); 
+    });
+}
 
 app.use(function(err, req, res, next) {
     res.status(500);
