@@ -9,7 +9,11 @@ function showPopup(callbackFunc) {
 	$(popUp).css({
 		"height": '300px',
 		"width": '300px',
-		"background-color": 'white'
+		"background-color": 'white',
+		'margin': 'auto 0'
+		  position: absolute;
+  		top: 50%;
+  		left: 50%;
 	});
 
 	var captureButton = document.createElement('button');
