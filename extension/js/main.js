@@ -1,4 +1,3 @@
-var a;
 var serverURL = 'https://fd82060c.ngrok.io';
 function showPopup(callbackFunc) {
 	var popUp = document.createElement('div');
@@ -19,19 +18,18 @@ function showPopup(callbackFunc) {
 
 	var video = document.createElement("video");
 	video.setAttribute('autoplay', 'true');
-	console.log('yooooooo');
     navigator.getUserMedia({video: true}, handleVideo, videoError);
-    console.log('sup');
 
+    var text = document.createElement('p');
 	function handleVideo(stream) {
 		console.log('dat boi boiii');
 	    video.src = window.URL.createObjectURL(stream);
 	    console.log(popUp);
 
     	popUp.appendChild(video);
+        popUp.appendChild(captureButton);
+        popUp.appendChild(text);
 		document.body.appendChild(popUp);
-		a = popUp;
-
 	}
 
 	function videoError(e) {
@@ -43,7 +41,6 @@ function showPopup(callbackFunc) {
 		"width": '300px'
 	});
 
-	popUp.appendChild(captureButton);
 
 	function dataURItoBlob(dataURI) {
 	    var binary = atob(dataURI.split(',')[1]);
@@ -72,27 +69,21 @@ function showPopup(callbackFunc) {
 			contentType: false,
 			processData: false,
 			success: function(response) {
-				console.log('my dude its lit');
+                $(popUp).remove();
+                text.innerText = response;
+				console.log(response);
 				callbackFunc(response);
 			}
 		})
 	});
-
-	// Draw popup
-	// show camera window and capture button
-	// Save picture when capture button is pressed
-	// Sned picture (xhr request) to whichever ngrok link i give you /upload
-	// Wait for response, if true, then open tabs, otherwise say
-	// Don't call this yet ;)
 
 }
 
 chrome.runtime.onMessage.addListener(function(req, sender, sendResponse) {
 	console.log('yooo');
 
-	showPopup(function() {
-		console.log('doggity dog!');
-		sendResponse();
+	showPopup(function(response) {
+		sendResponse(response);
 	});
 	return true;
 });
