@@ -31,7 +31,7 @@ app.post('/upload', function(req, res) {
             };  
             shell.run('script.py', options, function(err, analysis) {
                 console.log(parseInt(analysis[0]));
-                res.send(analysis);
+                res.send(analysis[0] === 35);
             });
         });      
     }); 

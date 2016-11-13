@@ -2,6 +2,7 @@
 
 """ First attempt at OpenCV work in Python"""
 import cv2
+import sys
 import numpy
 import pprint
 import random
@@ -10,6 +11,8 @@ import math
 from sklearn import cross_validation as cval
 from sklearn.base import BaseEstimator
 from sklearn.metrics import precision_score
+
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 def create_and_train_model_from_dict(label_matrix):
     """ Create eigenface model from dict of labels and images """
@@ -66,7 +69,7 @@ def read_matrix_from_file(filename):
 
 class FaceRecognizerModel(BaseEstimator):
     def __init__(self):
-        self.model = cv2.createFisherFaceRecognizer()
+        self.model = cv2.createLBPHFaceRecognizer()
 
     def fit(self, X, y):
         self.model.train(X, y)
@@ -79,6 +82,20 @@ if __name__ == "__main__":
     data_dict = create_label_matrix_dict(training_data)
     model = create_and_train_model_from_dict(data_dict)
 
-    filename = argv[1]
-    predicted_label = predict_image_from_model(model, read_matrix_from_file(filename))
-    print predicted_label, 'expecting 35'
+    filename = sys.argv[1]
+    im = cv2.imread(filename, cv2.CV_LOAD_IMAGE_GRAYSCALE)
+    faces = face_cascade.detectMultiScale(im, 1.3, 5)
+    print faces
+    if len(faces) == 0:
+        print 0
+    else:
+        (x,y,w,h) = faces[0] # assuming this is the biggest face
+        roi = im[y:y+h, x:x+w]# crop out face
+        roi_resized = cv2.resize(roi, (92, 112))
+        predicted_label = predict_image_from_model(model, roi_resized)
+        '''
+        cv2.imshow('img', roi_resized)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+        '''
+        print predicted_label[0]
