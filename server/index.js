@@ -5,14 +5,17 @@ var multer = require('multer');
 var upload = multer().single('file');
 var app = express();
 var uuid = require('node-uuid');
-var dotenv = require('dotenv');
+var dotenv = require('dotenv').config();
 var client = require('twilio')(process.env.ACCOUNT_SID, process.env.ACCOUNT_TOKEN); 
 
 app.set('port', (process.env.PORT || 8080))
+app.use(express.static('uploads'))
 
 app.get('/', function(req, res) {
     res.send("This still works");
 });
+
+var latestImage = '';
 
 app.post('/upload', function(req, res) {
     upload(req, res, function (err) {
@@ -31,10 +34,13 @@ app.post('/upload', function(req, res) {
             var options = {
                 args: ['./uploads/' + name + '.png']
             };  
+
+            latestImage = name + '.png';
             console.log(options);
             shell.run('script.py', options, function(err, analysis) {
-                console.log(err);
-                var isCorrect = parseInt(analysis[0]) === 34;
+                console.log(analysis);
+                var isCorrect = (parseInt(analysis[0]) === 32);
+                console.log(isCorrect);
                 if (!isCorrect) {
                     sendTwilioText();
                 }
@@ -48,12 +54,15 @@ function sendTwilioText() {
     var date = new Date();
     date.setTime(Date.now());
     var dateStr = date.toUTCString();
+    var str = "Hey Matt, someone just tried to log in to your browser on " + dateStr;
     client.messages.create({ 
         to: "+14016449821", 
-        from: "+16318886152", 
-        body: "Hey Matt – someone just tried to log in to your browser on " +  dateStr, 
+        from: process.env.TWILIO_PHONE,
+        body: str,
+        mediaUrl: 'http://fd82060c.ngrok.io/' + latestImage
     }, function(err, message) { 
-        console.log(message.sid); 
+        console.log(err);
+        console.log(message); 
     });
 }
 
