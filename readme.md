@@ -8,7 +8,7 @@ For the curious, I have added some setup instructions below for testing out Visa
 2. `cd visage/server/`
 3. `npm install`
 4. Make a Twilio account and get auth credentials: account SID, auth token, and a Twilio number. Set these as `ACCOUNT_SID`, `ACCOUNT_TOKEN`, and `TWILIO_PHONE` in your environment variables respectively.
-5. Grab the AT&T Database of Faces and unzip it
+5. Grab the AT&T Database of Faces from http://www.cl.cam.ac.uk/research/dtg/attarchive/facedatabase.html and unzip it
 6. Move the folder of pictures of Matts face (in `visage/server/s41/`) into `visage/server/att_faces/`
 7. Run `./create_csv att_faces/ > faces.csv`
 8. `npm start` to run the server
