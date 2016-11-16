@@ -38,7 +38,7 @@ app.post('/upload', function(req, res) {
             console.log(options);
             shell.run('script.py', options, function(err, analysis) {
                 console.log(analysis);
-                var isCorrect = (parseInt(analysis[0]) === 32);
+                var isCorrect = (parseInt(analysis[0]) === 35);
                 console.log(isCorrect);
                 if (!isCorrect) {
                     sendTwilioText();
