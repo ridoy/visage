@@ -1,4 +1,6 @@
-var serverURL = 'https://fd82060c.ngrok.io';
+// UPDATE THIS STRING to the URL on which your server is hosted
+var serverURL = '';
+
 function showPopup(isVerified, isFirstAttempt, callbackFunc) {
     $('#datboiContainer').remove()
     $('#datboi').remove();
