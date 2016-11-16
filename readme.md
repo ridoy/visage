@@ -1,5 +1,7 @@
 # VandyHacks 3 Project
 
+For the curious, I have added some setup instructions below for testing out Visage:
+
 # Setting up the server
 
 1. Have node.js installed
@@ -20,6 +22,6 @@
 4. If not checked already, select "Developer Mode" and click the "Load unpacked extension..." button which appears. This opens a file browser.
 5. Navigate to visage and select the `extension/` directory.
 
-# Help me lol
+# Need help?
 
 If you have any questions feel free to email me at ridoy@gatech.edu :)
