@@ -5,7 +5,6 @@ var multer = require('multer');
 var upload = multer().single('file');
 var app = express();
 var uuid = require('node-uuid');
-var dotenv = require('dotenv').config();
 var client = require('twilio')(process.env.ACCOUNT_SID, process.env.ACCOUNT_TOKEN); 
 
 app.set('port', (process.env.PORT || 8080))
