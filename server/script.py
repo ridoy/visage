@@ -41,7 +41,7 @@ def read_matrix_from_file(filename):
 
 if __name__ == "__main__":
     file = open('faces.csv', 'r')
-    training_data = prepare_training_testing_data(filedatacsv.readlines())
+    training_data = file.readlines()
     data_dict = create_label_matrix_dict(training_data)
     model = create_and_train_model_from_dict(data_dict)
 
@@ -60,4 +60,4 @@ if __name__ == "__main__":
         cv2.waitKey(0)
         cv2.destroyAllWindows()
         '''
-        print predicted_label[0]
+        print predicted_label
