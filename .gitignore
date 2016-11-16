@@ -1,6 +1,5 @@
 .DS_Store
 node_modules/
-att_faces/
-uploads/
+uploads/*
 npm-debug.log
 .env

@@ -10,16 +10,10 @@ import math
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 def create_and_train_model_from_dict(label_matrix):
-    """ Create eigenface model from dict of labels and images """
     model = cv2.createFisherFaceRecognizer()
     model.train(label_matrix.values(), numpy.array(label_matrix.keys()))
 
     return model
-
-def prepare_training_testing_data(file):
-    """ prepare testing and training data from file"""
-    lines = file.readlines()
-    return lines
 
 def create_label_matrix_dict(input_file):
     """ Create dict of label -> matricies from file """
@@ -46,8 +40,8 @@ def read_matrix_from_file(filename):
     return im_resized
 
 if __name__ == "__main__":
-    filedatacsv = open('faces.csv', 'r')
-    training_data = prepare_training_testing_data(filedatacsv)
+    file = open('faces.csv', 'r')
+    training_data = prepare_training_testing_data(filedatacsv.readlines())
     data_dict = create_label_matrix_dict(training_data)
     model = create_and_train_model_from_dict(data_dict)
 
