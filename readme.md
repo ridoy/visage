@@ -1,5 +1,7 @@
 # VandyHacks 3 Project
 
+Check out the demo video here: https://www.youtube.com/watch?v=JUeWS9IIQYE
+
 For the curious, I have added some setup instructions below for testing out Visage:
 
 # Setting up the server
