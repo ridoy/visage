@@ -13,9 +13,10 @@ For the curious, I have added some setup instructions below for testing out Visa
 5. Grab the AT&T Database of Faces from http://www.cl.cam.ac.uk/research/dtg/attarchive/facedatabase.html and unzip it
 6. Move the folder of pictures of Matts face (in `visage/server/s41/`) into `visage/server/att_faces/`
 7. Run `./create_csv att_faces/ > faces.csv`
-8. `npm start` to run the server
-9. In order for the Chrome extension to make POST requests to the server, the server needs to have a public URL. I recommend using ngrok for this: https://ngrok.com/.
-10. Install ngrok and run `ngrok http 8080`. Copy the URL that is outputted for setting up the chrome extension.
+8. Create an `upload` directory: `mkdir upload`
+9. `npm start` to run the server
+10. In order for the Chrome extension to make POST requests to the server, the server needs to have a public URL. I recommend using ngrok for this: https://ngrok.com/.
+11. Install ngrok and run `ngrok http 8080`. Copy the URL that is outputted for setting up the chrome extension.
 
 # Setting up the Chrome extension
 
